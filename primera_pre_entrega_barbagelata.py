@@ -8,11 +8,10 @@ def menu():
     print("¡Bienvenido a la plataforma!")
     print("1. Registráte")
     print("2. Inicia sesión")
-    print("3. Salir")
+    print("3. Ver usuarios registrados")
+    print("4. Salir")
     option = input("Elegí una opción: ")
     return option
-
-option = menu()
 
 
 #Registro y almacenamiento de usuarios
@@ -22,9 +21,6 @@ def user_login(database):
     password = input("Registra tu clave: ")
     database[user_name] = password
     print("El usuario registrado exitosamente.")
-
-user_login(database)
-print("Base de datos de usuarios registrados:", database)
 
 
 #Comprobación de usuarios existentes en base de datos. 3 intentos para login.
@@ -45,7 +41,15 @@ def login(database):
     if login_attempts == 3:
         print("Agotaste tus intentos. Intentalo en 10 minutos")
         
-login(database)
+
+#Mostrar a los usuarios existentes dentro de la base de datos
+
+def show_users(database):
+    print("Usuarios registrados: ")
+    for user_name in database.keys():
+        print(user_name)
+        print()
+
 
 #Opciones para el menú
 
@@ -57,6 +61,8 @@ while True:
     elif option == "2":
         login(database)
     elif option == "3":
+        show_users(database)
+    elif option == "4":
         print("¡Volve pronto!")
         break
     else:
